@@ -11,16 +11,15 @@ RUN apt update && \
 	git clone https://github.com/SamurAIGPT/privateGPT.git  && \
 	sed -i 's/localhost/"+window.location.hostname+"/g' privateGPT/client/components/ConfigSideNav.js  && \
 	sed -i 's/localhost/"+window.location.hostname+"/g' privateGPT/client/components/MainContainer.js  && \	
-	cd privateGPT/client  && \
+	#cd models  && \
+	#wget https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin && \
+	cd /root/privateGPT/client  && \
 	npm install  && \
-	cd /root && \
-	cd privateGPT/server  && \
+	cd /root/privateGPT/server  && \
 	pip3 install -r requirements.txt  && \
 	apt-get -y autoclean && apt-get -y autoremove && \
 	apt-get -y purge $(dpkg --get-selections | grep deinstall | sed s/deinstall//g) && \
 	rm -rf /var/lib/apt/lists/*  && \
-	#cd models  && \
-	#wget https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin && \
 	echo "[program:privategtp-server]" > /etc/supervisor/conf.d/pgpt-server.conf && \
         echo "directory=/root/privateGPT/server" >> /etc/supervisor/conf.d/pgpt-server.conf && \
         echo "autostart=true" >> /etc/supervisor/conf.d/pgpt-server.conf && \

@@ -19,13 +19,21 @@ RUN apt update && \
 	apt-get -y autoclean && apt-get -y autoremove && \
 	apt-get -y purge $(dpkg --get-selections | grep deinstall | sed s/deinstall//g) && \
 	rm -rf /var/lib/apt/lists/*  && \
-	cd models  && \
-	wget https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin && \
+	#cd models  && \
+	#wget https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin && \
 	echo "[program:privategtp-server]" > /etc/supervisor/conf.d/pgpt-server.conf && \
-	echo "command=python3 /root/privateGPT/server/privateGPT.py" >> /etc/supervisor/conf.d/pgpt-server.conf && \
-	echo "process_name = python3" >> /etc/supervisor/conf.d/pgpt-server.conf && \
-	echo "[program:pgpt-clinet]" > /etc/supervisor/conf.d/pgpt-clinet.conf && \
-	echo "command=/root/privateGPT/client/npm run dev" >> /etc/supervisor/conf.d/pgpt-client.conf && \
-	echo "process_name = npm" >> /etc/supervisor/conf.d/pgpt-client.conf
+        echo "directory=/root/privateGPT/server" >> /etc/supervisor/conf.d/pgpt-server.conf && \
+        echo "autostart=true" >> /etc/supervisor/conf.d/pgpt-server.conf && \
+        echo "autorestart=true" >> /etc/supervisor/conf.d/pgpt-server.conf && \
+        echo "redirect_stderr=true" >> /etc/supervisor/conf.d/pgpt-server.conf && \
+        echo "command=python3 /root/privateGPT/server/privateGPT.py" >> /etc/supervisor/conf.d/pgpt-server.conf && \
+        echo "process_name = python3" >> /etc/supervisor/conf.d/pgpt-server.conf && \
+        echo "[program:pgpt-clinet]" > /etc/supervisor/conf.d/pgpt-client.conf && \
+        echo "directory=/root/privateGPT/client" >> /etc/supervisor/conf.d/pgpt-client.conf && \
+        echo "autostart=true" >> /etc/supervisor/conf.d/pgpt-client.conf && \
+        echo "autorestart=true" >> /etc/supervisor/conf.d/pgpt-client.conf && \
+        echo "redirect_stderr=true" >> /etc/supervisor/conf.d/pgpt-client.conf && \
+        echo "command=npm run dev" >> /etc/supervisor/conf.d/pgpt-client.conf && \
+        echo "process_name = npm" >> /etc/supervisor/conf.d/pgpt-client.conf
 
 CMD "/usr/bin/supervisord -n"

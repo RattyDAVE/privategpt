@@ -35,4 +35,4 @@ RUN apt update && \
         echo "command=npm run dev" >> /etc/supervisor/conf.d/pgpt-client.conf && \
         echo "process_name = npm" >> /etc/supervisor/conf.d/pgpt-client.conf
 
-CMD ["/usr/bin/supervisord -n"]
+CMD ["/usr/bin/supervisord","-n"]

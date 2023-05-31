@@ -11,6 +11,22 @@ docker run -d --name PrivateGPT \
 
 Access via http://<DOCKER_HOST>:3000
 
+The supported extensions for documents are:
+* .csv: CSV
+* .docx: Word Documen,
+* .enex: EverNote
+* .eml: Email
+* .epub: EPub
+* .html: HTML File
+* .md: Markdown
+* .msg: Outlook Message
+* .odt: Open Document Text
+* .pdf: Portable Document Format (PDF)
+* .pptx : PowerPoint Document
+* .txt: Text file (UTF-8)
+
+All the import plugins are pre installed.
+
 Please note
  * this is NOT GPU enabled
  * needs 16GB RAM (will run with less but slower)

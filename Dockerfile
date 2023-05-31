@@ -37,10 +37,11 @@ RUN apt update && \
         echo "stderr_events_enabled=true" >> /etc/supervisor/conf.d/pgpt-client.conf && \
         echo "command=npm run dev" >> /etc/supervisor/conf.d/pgpt-client.conf && \
         echo "process_name = npm" >> /etc/supervisor/conf.d/pgpt-client.conf && \
-        echo "[eventlistener:stdout]" >> /etc/supervisor/conf.d/upervisor_stdout.conf && \
-        echo "command = supervisor_stdout" >> /etc/supervisor/conf.d/upervisor_stdout.conf && \
-        echo "buffer_size = 100" >> /etc/supervisor/conf.d/upervisor_stdout.conf && \
-        echo "events = PROCESS_LOG" >> /etc/supervisor/conf.d/upervisor_stdout.conf && \
-        echo "result_handler = supervisor_stdout:event_handler" >> /etc/supervisor/conf.d/upervisor_stdout.conf
+        #echo "[eventlistener:stdout]" >> /etc/supervisor/conf.d/upervisor_stdout.conf && \
+        #echo "command = supervisor_stdout" >> /etc/supervisor/conf.d/upervisor_stdout.conf && \
+        #echo "buffer_size = 100" >> /etc/supervisor/conf.d/upervisor_stdout.conf && \
+        #echo "events = PROCESS_LOG" >> /etc/supervisor/conf.d/upervisor_stdout.conf && \
+        #echo "result_handler = supervisor_stdout:event_handler" >> /etc/supervisor/conf.d/upervisor_stdout.conf  && \
+	echo "END"
 
 CMD ["/usr/bin/supervisord","-n"]

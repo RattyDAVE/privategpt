@@ -5,7 +5,7 @@ EXPOSE 3000 5000
 RUN apt update && \
 	apt install -y curl && \
 	curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-	apt install -y git nodejs python3 curl build-essential mc python3-dev wget supervisor && \
+	apt install -y git nodejs python3 build-essential mc python3-dev wget supervisor pandoc && \
 	curl https://bootstrap.pypa.io/get-pip.py | python3  && \
 	cd /root  && \
 	git clone https://github.com/SamurAIGPT/privateGPT.git  && \

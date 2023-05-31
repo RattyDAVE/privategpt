@@ -13,10 +13,11 @@ RUN apt update && \
 	sed -i 's/localhost/"+window.location.hostname+"/g' privateGPT/client/components/MainContainer.js  && \	
 	#cd models  && \
 	#wget https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin && \
-	cd /root/privateGPT/client  && \
+	cd /root/privateGPT/client && \
 	npm install  && \
-	cd /root/privateGPT/server  && \
-	pip3 install -r requirements.txt  && \
+	cd /root/privateGPT/server && \
+	pip3 install -r requirements.txt && \
+	pip3 install html2text && \
 	apt-get -y autoclean && apt-get -y autoremove && \
 	apt-get -y purge $(dpkg --get-selections | grep deinstall | sed s/deinstall//g) && \
 	rm -rf /var/lib/apt/lists/*  && \

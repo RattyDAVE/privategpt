@@ -16,7 +16,7 @@ RUN     apt update && \
         cd /root/privateGPT/server && \
         pip3 install -r requirements.txt && \
         pip3 install html2text && \
-        apt-get -y purgebuild-essential && \
+        apt-get -y purge build-essential && \
         apt-get -y autoclean && apt-get -y autoremove && \
         apt-get -y purge $(dpkg --get-selections | grep deinstall | sed s/deinstall//g) && \
         rm -rf /var/lib/apt/lists/*

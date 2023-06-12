@@ -5,7 +5,7 @@ EXPOSE 3000 5000
 RUN     apt update && \
 	apt install -y curl && \
 	curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-	apt install -y git nodejs python3 build-essential mc python3-dev wget supervisor pandoc && \
+	apt install -y git nodejs python3 build-essential mc python3-dev supervisor pandoc && \
 	curl https://bootstrap.pypa.io/get-pip.py | python3  && \
 	cd /root  && \
 	git clone https://github.com/SamurAIGPT/privateGPT.git  && \
@@ -16,6 +16,7 @@ RUN     apt update && \
 	cd /root/privateGPT/server && \
 	pip3 install -r requirements.txt && \
 	pip3 install html2text && \
+	apt-get purge build-essential && \
 	apt-get -y autoclean && apt-get -y autoremove && \
 	apt-get -y purge $(dpkg --get-selections | grep deinstall | sed s/deinstall//g) && \
 	rm -rf /var/lib/apt/lists/*

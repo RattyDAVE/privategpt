@@ -12,8 +12,9 @@ RUN     apt update && \
         cd /root/privateGPT/client && \
         npm install  && \
         cd /root/privateGPT/server && \
-        pip3 install -r requirements.txt && \
-        pip3 install html2text && \
+        pip3 install --no-cache-dir -r requirements.txt && \
+        pip3 install --no-cache-dir html2text && \
+	pip3 cache purge && \
         apt-get -y purge build-essential python3-dev && \
         apt-get -y autoclean && apt-get -y autoremove && \
         apt-get -y purge $(dpkg --get-selections | grep deinstall | sed s/deinstall//g) && \
